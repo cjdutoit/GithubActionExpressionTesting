@@ -72,7 +72,7 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                                 new GithubTask()
                                 {
                                     Name = "Display Version Found",
-                                    Run = "echo '" + versionEnvironmentVariableName + ": ${{ env." + versionEnvironmentVariableName + "}}'"
+                                    Run = "echo " + versionEnvironmentVariableName + ": ${{ env." + versionEnvironmentVariableName + "}}"
                                 },
 
                                 new ExtractProjectPropertyTask(
