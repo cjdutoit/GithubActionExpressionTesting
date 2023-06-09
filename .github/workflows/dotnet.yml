@@ -76,6 +76,8 @@ jobs:
 
         'EOF' >> $env:GITHUB_ENV
       shell: pwsh
+    - name: Display Version Found
+      run: "echo \"version_number: '${{ env.version_number }}'\""
     - name: Extract Package Release Notes
       run: >
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
@@ -86,6 +88,8 @@ jobs:
 
         'EOF' >> $env:GITHUB_ENV
       shell: pwsh
+    - name: Display Package Release Notes
+      run: "echo \"package_release_notes: '${{ env.package_release_notes }}'\""
     - name: Create GitHub Tag
       run: >-
         git tag -a "v${{ env.version_number }}" -m "Release - v${{ env.version_number }}"
