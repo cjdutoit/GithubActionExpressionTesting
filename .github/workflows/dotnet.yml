@@ -27,8 +27,8 @@ env:
       )
     }}
 jobs:
-  build-windows:
-    runs-on: windows-latest
+  build-ubuntu:
+    runs-on: ubuntu-latest
     steps:
     - name: Check out
       uses: actions/checkout@v3
@@ -69,8 +69,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-  build-ubuntu:
-    runs-on: ubuntu-latest
+  build-windows:
+    runs-on: windows-latest
     steps:
     - name: Check out
       uses: actions/checkout@v3
