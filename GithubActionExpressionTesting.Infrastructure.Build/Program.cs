@@ -17,6 +17,10 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
         static void Main(string[] args)
         {
             string branchName = "main";
+            string projectRelativePath = "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj";
+            string versionEnvironmentVariableName = "version_number";
+            string packageReleaseNotesEnvironmentVariable = "package_release_notes";
+
             var aDotNetClient = new ADotNetClient();
 
             var githubPipeline = new GithubPipeline
@@ -57,6 +61,36 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                                     Name = "Check out"
                                 },
 
+                                new ExtractProjectPropertyTask(
+                                    projectRelativePath,
+                                    propertyName: "Version",
+                                    environmentVariableName: versionEnvironmentVariableName)
+                                {
+                                    Name = $"Extract Version"
+                                },
+
+                                new GithubTask()
+                                {
+                                    Name = "Display Version Found",
+                                    Run = "echo \"" + versionEnvironmentVariableName + ": ${{ env." + versionEnvironmentVariableName + "}}\""
+                                },
+
+                                new ExtractProjectPropertyTask(
+                                    projectRelativePath,
+                                    propertyName: "PackageReleaseNotes",
+                                    environmentVariableName: packageReleaseNotesEnvironmentVariable)
+                                {
+                                    Name = $"Extract Package Release Notes"
+                                },
+
+                                new GithubTask()
+                                {
+                                    Name = "Display Package Release Notes",
+                                    Run = "echo \"" + packageReleaseNotesEnvironmentVariable + ": ${{ env." + packageReleaseNotesEnvironmentVariable + "}}\""
+                                },
+
+
+
                                 new SetupDotNetTaskV3
                                 {
                                     Name = "Setup .Net",
@@ -89,11 +123,11 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                         new TagJob(
                             runsOn: BuildMachines.UbuntuLatest,
                             dependsOn: "build",
-                            projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
+                            projectRelativePath,
                             githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
-                            versionEnvironmentVariableName: "version_number",
-                            packageReleaseNotesEnvironmentVariable: "package_release_notes",
-                            branchName: branchName)
+                            versionEnvironmentVariableName,
+                            packageReleaseNotesEnvironmentVariable,
+                            branchName)
                     },
                     {
                         "publish",

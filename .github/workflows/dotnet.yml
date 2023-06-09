@@ -32,6 +32,30 @@ jobs:
     steps:
     - name: Check out
       uses: actions/checkout@v3
+    - name: Extract Version
+      run: >
+        $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
+
+        'version_number<<EOF' >> $env:GITHUB_ENV
+
+        '$version_number' >> $env:GITHUB_ENV
+
+        'EOF' >> $env:GITHUB_ENV
+      shell: pwsh
+    - name: Display Version Found
+      run: 'echo "version_number: ${{ env.version_number}}"'
+    - name: Extract Package Release Notes
+      run: >
+        $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
+
+        'package_release_notes<<EOF' >> $env:GITHUB_ENV
+
+        '$package_release_notes' >> $env:GITHUB_ENV
+
+        'EOF' >> $env:GITHUB_ENV
+      shell: pwsh
+    - name: Display Package Release Notes
+      run: 'echo "package_release_notes: ${{ env.package_release_notes}}"'
     - name: Setup .Net
       uses: actions/setup-dotnet@v3
       with:
