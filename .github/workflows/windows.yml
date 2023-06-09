@@ -1,0 +1,60 @@
+name: .Net
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    types:
+    - opened
+    - synchronize
+    - reopened
+    - closed
+    branches:
+    - main
+env:
+  IS_RELEASE_CANDIDATE: >-
+    ${{
+      (
+        github.event_name == 'pull_request' && 
+        startsWith(github.event.pull_request.title, 'RELEASES:') && 
+        contains(github.event.pull_request.labels.*.name, 'RELEASES')
+      )
+      ||
+      (
+        github.event_name == 'push' && 
+        startsWith(github.event.head_commit.message, 'RELEASES:') && 
+        startsWith(github.ref_name, 'RELEASE')
+      )
+    }}
+jobs:
+  build-windows-latest:
+    runs-on: windows-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+    - name: Configure Git
+      run: >-
+        git config user.name "GitHub Action"
+
+        git config user.email "action@github.com"
+    - name: Extract Version
+      shell: pwsh
+      run: |-
+        $version_number = ((Select-Xml -Path GithubActionExpressionTesting/GithubActionExpressionTesting.csproj -XPath "//Version").Node.InnerXML)
+        "version_number=$version_number" >> $env:GITHUB_ENV
+
+    - name: Extract Package Release Notes
+      shell: pwsh
+      run: |-
+        $package_release_notes = ((Select-Xml -Path GithubActionExpressionTesting/GithubActionExpressionTesting.csproj -XPath "//PackageReleaseNotes").Node.InnerXML)
+
+        # Since release notes can have multi line text we need
+        # to do the following to set the environment variable
+        "package_release_notes<<EOF" >> $env:GITHUB_ENV
+        "$package_release_notes" >> $env:GITHUB_ENV
+        "EOF" >> $env:GITHUB_ENV
+
+    - name: Echo Variables
+      run: |-
+        echo "Found next version_number: '${{ env.version_number }}'"
+        echo "Found next package_release_notes: ${{ env.package_release_notes }}"

@@ -1,10 +1,36 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ADotNet" Version="3.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+		<PackageReference Include="xunit.abstractions" Version="2.0.3" />
+		<PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="../.github/workflows/dotnet.yml">
+			<Pack>false</Pack>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Include="../.github/workflows/ubuntu.yml">
+			<Pack>false</Pack>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Include="../.github/workflows/windows.yml">
+			<Pack>false</Pack>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ADotNet\ADotNet\ADotNet.csproj" />
+	</ItemGroup>
 
 </Project>

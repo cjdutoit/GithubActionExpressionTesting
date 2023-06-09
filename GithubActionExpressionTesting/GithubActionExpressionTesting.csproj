@@ -1,9 +1,37 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyVersion>0.0.0.1</AssemblyVersion>
+		<FileVersion>0.0.0.1</FileVersion>
+		<Version>0.0.0.1</Version>
+		<PackageReleaseNotes>
+			#Adding Support For Generic Job Definitions
+
+			## BREAKING CHANGE
+			We are excited to announce a significant update to how we define jobs for GitHub Actions using ADotNet! 
+			Starting from this release, we have introduced a breaking change that allows the usage of generic job
+			definitions, replacing the previous job names specifically used for build, tagging, and release.
+			This change requires a small code modification in how you define jobs. You will now have the
+			flexibility to define jobs based on your specific needs, enhancing customization and providing
+			a more streamlined workflow.
+		</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>true</Pack>
+			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="..\LICENSE.txt">
+			<Pack>true</Pack>
+			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>
