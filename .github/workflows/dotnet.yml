@@ -45,7 +45,7 @@ jobs:
         echo "Found version_number: '$version_number'"
       shell: pwsh
     - name: Display Version Found
-      run: 'echo "version_number: "${{ env.{version_number} }}'
+      run: "echo 'version_number: ${{ env.$(version_number) }}'"
     - name: Extract Package Release Notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
@@ -59,7 +59,7 @@ jobs:
         echo "Found package_release_notes: '$package_release_notes'"
       shell: pwsh
     - name: Display Package Release Notes
-      run: 'echo "package_release_notes: "{{ $env.{package_release_notes} }}'
+      run: "echo 'package_release_notes: ${{ env.$(package_release_notes) }}'"
     - name: Setup .Net
       uses: actions/setup-dotnet@v3
       with:
