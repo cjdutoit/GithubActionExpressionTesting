@@ -39,8 +39,8 @@ jobs:
         git config user.email "action@github.com"
     - name: Extract Version
       run: >-
-        version_number=$(awk -v RS='' -F'</?Version>' 'NF>1{print $2}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//')
-        
+        $version_number = ((Select-Xml -Path GithubActionExpressionTesting/GithubActionExpressionTesting.csproj -XPath "//Version").Node.InnerXML)
+
         echo "$version_number"
 
         echo 'version_number<<EOF' >> $GITHUB_ENV
@@ -49,17 +49,19 @@ jobs:
 
         echo 'EOF' >> $GITHUB_ENV
 
+        "version_number<<EOF" >> $env:GITHUB_ENV
+        "$version_number" >> $env:GITHUB_ENV
+        "EOF" >> $env:GITHUB_ENV
+
         echo "Version - ${{ env.version_number }}"
     - name: Extract Package Release Notes
       run: >-
-        package_release_notes=$(awk -v RS='' -F'</?PackageReleaseNotes>' 'NF>1{print $2}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//')
+        $package_release_notes = ((Select-Xml -Path GithubActionExpressionTesting/GithubActionExpressionTesting.csproj -XPath "//PackageReleaseNotes").Node.InnerXML)
 
         echo "$package_release_notes"
 
-        echo 'package_release_notes<<EOF' >> $GITHUB_ENV
-
-        echo -e "$package_release_notes" >> $GITHUB_ENV
-
-        echo 'EOF' >> $GITHUB_ENV
+        "package_release_notes<<EOF" >> $env:GITHUB_ENV
+        "$package_release_notes" >> $env:GITHUB_ENV
+        "EOF" >> $env:GITHUB_ENV
 
         echo "PackageReleaseNotes - ${{ env.package_release_notes }}"
