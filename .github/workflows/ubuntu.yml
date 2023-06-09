@@ -41,6 +41,8 @@ jobs:
       run: >-
         version_number=$(awk -v RS='' -F'</?Version>' 'NF>1{print $2}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//')
 
+        echo "$version_number"
+
         echo 'version_number<<EOF' >> $GITHUB_ENV
 
         echo -e "$version_number" >> $GITHUB_ENV
@@ -51,6 +53,8 @@ jobs:
     - name: Extract Package Release Notes
       run: >-
         package_release_notes=$(awk -v RS='' -F'</?PackageReleaseNotes>' 'NF>1{print $2}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//')
+
+        echo "$package_release_notes"
 
         echo 'package_release_notes<<EOF' >> $GITHUB_ENV
 
