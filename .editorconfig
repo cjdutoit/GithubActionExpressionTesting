@@ -1,0 +1,12 @@
+#### Core EditorConfig Options ####
+
+#Formatting - header template
+[*.cs]
+file_header_template = ---------------------------------------------------------------\nCopyright (c) Christo du Toit. All rights reserved.\nLicensed under the MIT License.\nSee License.txt in the project root for license information.\n---------------------------------------------------------------
+
+#sort System.* using directives alphabetically, and place them before other usings
+dotnet_sort_system_directives_first = true
+
+# Guidelines
+[*.{cs,vb,ts,tsx, md}]
+guidelines = 120
