@@ -44,10 +44,10 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                 Jobs = new Dictionary<string, Job>
                 {
                     {
-                        "build-windows",
+                        "build-ubuntu",
                         new Job
                         {
-                            RunsOn = BuildMachines.WindowsLatest,
+                            RunsOn = BuildMachines.UbuntuLatest,
 
                             Steps = new List<GithubTask>
                             {
@@ -105,10 +105,10 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                         }
                     },
                     {
-                        "build-ubuntu",
+                        "build-windows",
                         new Job
                         {
-                            RunsOn = BuildMachines.UbuntuLatest,
+                            RunsOn = BuildMachines.WindowsLatest,
 
                             Steps = new List<GithubTask>
                             {

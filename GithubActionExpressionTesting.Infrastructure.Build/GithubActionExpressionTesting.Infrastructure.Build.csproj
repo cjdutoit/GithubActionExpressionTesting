@@ -14,4 +14,11 @@
 		<PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="../.github/workflows/dotnet.yml">
+			<Pack>false</Pack>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>
