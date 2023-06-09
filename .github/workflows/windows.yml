@@ -1,0 +1,61 @@
+name: .Net
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    types:
+    - opened
+    - synchronize
+    - reopened
+    - closed
+    branches:
+    - main
+env:
+  IS_RELEASE_CANDIDATE: >-
+    ${{
+      (
+        github.event_name == 'pull_request' && 
+        startsWith(github.event.pull_request.title, 'RELEASES:') && 
+        contains(github.event.pull_request.labels.*.name, 'RELEASES')
+      )
+      ||
+      (
+        github.event_name == 'push' && 
+        startsWith(github.event.head_commit.message, 'RELEASES:') && 
+        startsWith(github.ref_name, 'RELEASE')
+      )
+    }}
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+    - name: Configure Git
+      run: >-
+        git config user.name "GitHub Action"
+
+        git config user.email "action@github.com"
+    - name: Extract Version
+      run: >-
+        version_number=$(awk -v RS='' -F'</?Version>' 'NF>1{print $2}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//')
+
+        echo 'version_number<<EOF' >> $GITHUB_ENV
+
+        echo -e "$version_number" >> $GITHUB_ENV
+
+        echo 'EOF' >> $GITHUB_ENV
+
+        echo "Version - ${{ env.version_number }}"
+    - name: Extract Package Release Notes
+      run: >-
+        package_release_notes=$(awk -v RS='' -F'</?PackageReleaseNotes>' 'NF>1{print $2}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//')
+
+        echo 'package_release_notes<<EOF' >> $GITHUB_ENV
+
+        echo -e "$package_release_notes" >> $GITHUB_ENV
+
+        echo 'EOF' >> $GITHUB_ENV
+
+        echo "PackageReleaseNotes - ${{ env.package_release_notes }}"
