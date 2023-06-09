@@ -27,7 +27,7 @@ env:
       )
     }}
 jobs:
-  build-windows:
+  build-windows-latest:
     runs-on: windows-latest
     steps:
     - name: Check out
