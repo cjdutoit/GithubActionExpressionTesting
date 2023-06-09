@@ -18,53 +18,6 @@
 			This change requires a small code modification in how you define jobs. You will now have the
 			flexibility to define jobs based on your specific needs, enhancing customization and providing
 			a more streamlined workflow.
-
-			### Before
-			```csharp
-			Jobs = new Jobs
-			{
-				Build = new BuildJob
-				{
-					. . .
-				},
-				AddTag = new TagJob
-				{
-					. . .
-				},
-				Publish = new PublishJob
-				{
-					. . .
-				},
-			}
-			```
-
-			### Now
-			```csharp
-			Jobs = new Jobs
-			{
-				{
-					"build",
-					new Job
-					{
-						. . .
-					}
-				},
-				{
-					"add_tag",
-					new Job
-					{
-						. . .
-					}
-				},
-				{
-					"publish",
-					new Job
-					{
-						. . .
-					}
-				},
-			}
-			```
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

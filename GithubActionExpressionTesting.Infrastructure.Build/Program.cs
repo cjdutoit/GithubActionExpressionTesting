@@ -16,6 +16,7 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
     {
         static void Main(string[] args)
         {
+            string branchName = "main";
             var aDotNetClient = new ADotNetClient();
 
             var githubPipeline = new GithubPipeline
@@ -26,13 +27,13 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                 {
                     Push = new PushEvent
                     {
-                        Branches = new string[] { "main" }
+                        Branches = new string[] { branchName }
                     },
 
                     PullRequest = new PullRequestEvent
                     {
                         Types = new string[] { "opened", "synchronize", "reopened", "closed" },
-                        Branches = new string[] { "main" }
+                        Branches = new string[] { branchName }
                     }
                 },
 
@@ -165,6 +166,64 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                             }
                         }
                     },
+                    {
+                        "build",
+                        new Job
+                        {
+                            RunsOn = BuildMachines.UbuntuLatest,
+
+                            Steps = new List<GithubTask>
+                            {
+                                new CheckoutTaskV3
+                                {
+                                    Name = "Check out"
+                                },
+
+                                new SetupDotNetTaskV3
+                                {
+                                    Name = "Setup .Net",
+
+                                    With = new TargetDotNetVersionV3
+                                    {
+                                        DotNetVersion = "7.0.201"
+                                    }
+                                },
+
+                                new RestoreTask
+                                {
+                                    Name = "Restore"
+                                },
+
+                                new DotNetBuildTask
+                                {
+                                    Name = "Build"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "Test"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "add_tag",
+                        new TagJob(
+                            runsOn: BuildMachines.UbuntuLatest,
+                            dependsOn: "build",
+                            projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
+                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
+                            versionEnvironmentVariableName: "version_number",
+                            packageReleaseNotesEnvironmentVariable: "package_release_notes",
+                            branchName: branchName)
+                    },
+                    {
+                        "publish",
+                        new PublishJob(
+                            runsOn: BuildMachines.UbuntuLatest,
+                            dependsOn: "add_tag",
+                            nugetApiKey: "${{ secrets.NUGET_ACCESS }}")
+                    }
                 }
             };
 
