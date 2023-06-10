@@ -37,9 +37,11 @@ jobs:
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        Write-Host "Version number: $version_number"$version_number = $version_number.Replace('"', '\"')
+        Write-Host "Version number: $version_number" 
 
-        $version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
+        version_number = $version_number.Replace('"', '\"')
+
+        version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
         Write-Host "File path: $env:GITHUB_OUTPUT"
       shell: pwsh
@@ -50,9 +52,11 @@ jobs:
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        Write-Host "Version number: $package_release_notes"$package_release_notes = $package_release_notes.Replace('"', '\"')
+        Write-Host "Version number: $package_release_notes" 
 
-        $package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
+        package_release_notes = $package_release_notes.Replace('"', '\"')
+
+        package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
         Write-Host "File path: $env:GITHUB_OUTPUT"
       shell: pwsh
@@ -97,9 +101,11 @@ jobs:
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        Write-Host "Version number: $version_number"$version_number = $version_number.Replace('"', '\"')
+        Write-Host "Version number: $version_number" 
 
-        $version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
+        version_number = $version_number.Replace('"', '\"')
+
+        version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
         Write-Host "File path: $env:GITHUB_OUTPUT"
       shell: pwsh
@@ -110,9 +116,11 @@ jobs:
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        Write-Host "Version number: $package_release_notes"$package_release_notes = $package_release_notes.Replace('"', '\"')
+        Write-Host "Version number: $package_release_notes" 
 
-        $package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
+        package_release_notes = $package_release_notes.Replace('"', '\"')
+
+        package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
         Write-Host "File path: $env:GITHUB_OUTPUT"
       shell: pwsh
