@@ -35,6 +35,7 @@ jobs:
     - name: Extract Version
       run: |-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
+        echo "Found version_number: '$version_number'"
 
         'version_number<<EOF' >> $env:GITHUB_ENV
 
@@ -42,11 +43,11 @@ jobs:
 
         'EOF' >> $env:GITHUB_ENV
 
-        echo "Found version_number: '$version_number'"
       shell: pwsh
     - name: Extract Package Release Notes
       run: |-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
+        echo "Found package_release_notes: '$package_release_notes'"
 
         # 'package_release_notes<<EOF' >> $env:GITHUB_ENV
 
@@ -54,7 +55,6 @@ jobs:
 
         # 'EOF' >> $env:GITHUB_ENV
 
-        echo "Found package_release_notes: '$package_release_notes'"
       shell: pwsh
     - name: Echo Variables
       run: |-
