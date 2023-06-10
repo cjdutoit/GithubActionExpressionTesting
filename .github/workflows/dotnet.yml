@@ -34,31 +34,29 @@ jobs:
       uses: actions/checkout@v3
     - name: Extract Version
       id: extract_version
-      run: >-
+      run: >
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        Write-Host "Version number: $version_number" 
+        "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        version_number = $version_number.Replace('"', '\"')
+        "$version_number" >> $GITHUB_OUTPUT 
 
-        version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
-        Write-Host "File path: $env:GITHUB_OUTPUT"
+        EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
       id: extract_package_release_notes
-      run: >-
+      run: >
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        Write-Host "Version number: $package_release_notes" 
+        "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        package_release_notes = $package_release_notes.Replace('"', '\"')
+        "$package_release_notes" >> $GITHUB_OUTPUT 
 
-        package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
-        Write-Host "File path: $env:GITHUB_OUTPUT"
+        EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
@@ -98,31 +96,29 @@ jobs:
         git config user.email "action@github.com"
     - name: Extract Version
       id: extract_version
-      run: >-
+      run: >
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        Write-Host "Version number: $version_number" 
+        "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        version_number = $version_number.Replace('"', '\"')
+        "$version_number" >> $GITHUB_OUTPUT 
 
-        version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
-        Write-Host "File path: $env:GITHUB_OUTPUT"
+        EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
       id: extract_package_release_notes
-      run: >-
+      run: >
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        Write-Host "Version number: $package_release_notes" 
+        "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        package_release_notes = $package_release_notes.Replace('"', '\"')
+        "$package_release_notes" >> $GITHUB_OUTPUT 
 
-        package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append 
 
-        Write-Host "File path: $env:GITHUB_OUTPUT"
+        EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
