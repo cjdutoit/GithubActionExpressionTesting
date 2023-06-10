@@ -39,9 +39,11 @@ jobs:
 
         echo "$version_number"
 
+        echo $version_number > version_number.txt 
+
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$version_number" >> $GITHUB_OUTPUT 
+        echo "$(cat version_number.txt)" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -54,9 +56,11 @@ jobs:
 
         echo "$package_release_notes"
 
+        echo $package_release_notes > package_release_notes.txt 
+
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$package_release_notes" >> $GITHUB_OUTPUT 
+        echo "$(cat package_release_notes.txt)" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -103,9 +107,11 @@ jobs:
 
         echo "$version_number"
 
+        echo $version_number > version_number.txt 
+
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$version_number" >> $GITHUB_OUTPUT 
+        echo "$(cat version_number.txt)" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -118,9 +124,11 @@ jobs:
 
         echo "$package_release_notes"
 
+        echo $package_release_notes > package_release_notes.txt 
+
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$package_release_notes" >> $GITHUB_OUTPUT 
+        echo "$(cat package_release_notes.txt)" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
