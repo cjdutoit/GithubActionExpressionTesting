@@ -32,20 +32,16 @@ jobs:
     steps:
     - name: Check out
       uses: actions/checkout@v3
+
     - name: Extract Version
-      run: >-
+      run: |-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
-
         echo 'version_number<<EOF' >> $env:GITHUB_ENV
-
         echo '$version_number' >> $env:GITHUB_ENV
-
         echo 'EOF' >> $env:GITHUB_ENV
-
-        echo "Found version_number: '$version_number'"
+        echo 'Found version_number: $version_number'
       shell: pwsh
-    - name: Display Version Found
-      run: 'echo "version_number: ${{ env.version_number }}"'
+
     - name: Extract Package Release Notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
@@ -56,10 +52,20 @@ jobs:
 
         echo 'EOF' >> $env:GITHUB_ENV
 
-        echo "Found package_release_notes: '$package_release_notes'"
+        echo 'Found package_release_notes: $package_release_notes'
       shell: pwsh
+
+    - name: Echo Variables
+      run: |-
+        echo "Found next version_number: '${{ env.version_number }}'"
+        echo "Found next package_release_notes: ${{ env.package_release_notes }}"
+
     - name: Display Package Release Notes
       run: 'echo "package_release_notes: ${{ env.package_release_notes }}"'
+
+    - name: Display Version Found
+      run: 'echo "version_number: ${{ env.version_number }}"'
+
     - name: Setup .Net
       uses: actions/setup-dotnet@v3
       with:
