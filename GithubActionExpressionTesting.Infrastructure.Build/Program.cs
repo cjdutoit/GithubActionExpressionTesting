@@ -80,12 +80,9 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                                 new GithubTask()
                                 {
                                     Name = "Echo Variables",
-                                     Run =
+                                    Run =
                                         $"echo \"version_number: ${{ env.version_number }}\"\n" +
-                                        $"echo \"package_release_notes: ${{ env.package_release_notes }}\"\n" +
-                                        $"echo \"--------------------------------------------------------------------" +
-                                        $"echo \"{versionEnvironmentVariableName}: ${{{{ env.{versionEnvironmentVariableName} }}}}\"\n" +
-                                        $"echo \"{packageReleaseNotesEnvironmentVariable}: ${{{{ env.{packageReleaseNotesEnvironmentVariable} }}}}\""
+                                        $"echo \"package_release_notes: ${{ env.package_release_notes }}\""
                                 },
 
                                 new SetupDotNetTaskV3
