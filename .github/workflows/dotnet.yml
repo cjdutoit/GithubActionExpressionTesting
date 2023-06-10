@@ -44,8 +44,6 @@ jobs:
 
         echo "Found version_number: '$version_number'"
       shell: pwsh
-    - name: Display Version Found
-      run: 'echo "version_number: ${{ env.version_number }}"'
     - name: Extract Package Release Notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
@@ -58,8 +56,15 @@ jobs:
 
         echo "Found package_release_notes: '$package_release_notes'"
       shell: pwsh
-    - name: Display Package Release Notes
-      run: 'echo "package_release_notes: ${{ env.package_release_notes }}"'
+    - name: Echo Variables
+      run: >-
+        echo "version_number: ${ env.version_number }"
+
+        echo "package_release_notes: ${ env.package_release_notes }"
+
+        echo "--------------------------------------------------------------------echo "version_number: ${{ env.version_number }}"
+
+        echo "package_release_notes: ${{ env.package_release_notes }}"
     - name: Setup .Net
       uses: actions/setup-dotnet@v3
       with:
@@ -98,21 +103,19 @@ jobs:
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        'echo "Found version_number: $version_number"'
-
         'version_number<<EOF' >> $env:GITHUB_ENV
 
         '$version_number' >> $env:GITHUB_ENV
 
         'EOF' >> $env:GITHUB_ENV
 
+        echo "Found version_number: '$version_number'"
       shell: pwsh
-
+    - name: Display Version Found
+      run: 'echo "version_number: ${{ env.version_number}}"'
     - name: Extract Package Release Notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
-
-        'echo "Found package_release_notes: $package_release_notes"'
 
         'package_release_notes<<EOF' >> $env:GITHUB_ENV
 
@@ -120,13 +123,10 @@ jobs:
 
         'EOF' >> $env:GITHUB_ENV
 
+        echo "Found package_release_notes: '$package_release_notes'"
       shell: pwsh
-
-    - name: Echo Variables
-      run: >-
-        echo "Found next version_number: ${{ env.version_number }}"
-        echo "Found next package_release_notes: ${{ env.package_release_notes }}"
-
+    - name: Display Package Release Notes
+      run: 'echo "package_release_notes: ${{ env.package_release_notes}}"'
     - name: Create GitHub Tag
       run: >-
         git tag -a "v${{ env.version_number }}" -m "Release - v${{ env.version_number }}"

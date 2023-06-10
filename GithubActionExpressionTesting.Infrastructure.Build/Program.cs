@@ -69,12 +69,6 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                                     Name = $"Extract Version"
                                 },
 
-                                new GithubTask()
-                                {
-                                    Name = "Display Version Found",
-                                    Run = $"echo \"{versionEnvironmentVariableName}: ${{{{ env.{versionEnvironmentVariableName} }}}}\""
-                                },
-
                                 new ExtractProjectPropertyTask(
                                     projectRelativePath,
                                     propertyName: "PackageReleaseNotes",
@@ -85,8 +79,13 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
 
                                 new GithubTask()
                                 {
-                                    Name = "Display Package Release Notes",
-                                     Run = $"echo \"{packageReleaseNotesEnvironmentVariable}: ${{{{ env.{packageReleaseNotesEnvironmentVariable} }}}}\""
+                                    Name = "Echo Variables",
+                                     Run =
+                                        $"echo \"version_number: ${{ env.version_number }}\"\n" +
+                                        $"echo \"package_release_notes: ${{ env.package_release_notes }}\"\n" +
+                                        $"echo \"--------------------------------------------------------------------" +
+                                        $"echo \"{versionEnvironmentVariableName}: ${{{{ env.{versionEnvironmentVariableName} }}}}\"\n" +
+                                        $"echo \"{packageReleaseNotesEnvironmentVariable}: ${{{{ env.{packageReleaseNotesEnvironmentVariable} }}}}\""
                                 },
 
                                 new SetupDotNetTaskV3
