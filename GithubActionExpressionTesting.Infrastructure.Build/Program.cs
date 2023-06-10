@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 // Copyright (c) Christo du Toit. All rights reserved.
 // Licensed under the MIT License.
 // See License.txt in the project root for license information.
@@ -80,7 +80,9 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                                 new GithubTask()
                                 {
                                     Name = "Echo Variables",
+                                    Shell = ShellEnvironments.PowerShellCore,
                                     Run =
+                                        "echo \"version_number: $env:version_number\"\n" +
                                         "echo \"version_number: ${{ env.version_number }}\"\n" +
                                         "echo \"package_release_notes: ${{ env.package_release_notes }}\""
                                 },

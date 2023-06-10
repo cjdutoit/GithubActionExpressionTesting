@@ -58,6 +58,8 @@ jobs:
       shell: pwsh
     - name: Echo Variables
       run: >-
+        echo "version_number: $env:version_number"
+
         echo "version_number: ${{ env.version_number }}"
 
         echo "package_release_notes: ${{ env.package_release_notes }}"
