@@ -33,36 +33,27 @@ jobs:
     - name: Check out
       uses: actions/checkout@v3
     - name: Extract Version
+      id: extract_version
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        'version_number<<EOF' >> $env:GITHUB_ENV
+        echo "##[set-output name=version_number]$version_number
 
-        '$version_number' >> $env:GITHUB_ENV
-
-        'EOF' >> $env:GITHUB_ENV
-
-        echo "Found version_number: $version_number"
+        echo "Found version_number: '$version_number'"
       shell: pwsh
-
+    - name: Display Version
+      run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
+      id: extract_package_release_notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        'package_release_notes<<EOF' >> $env:GITHUB_ENV
+        echo "##[set-output name=package_release_notes]$package_release_notes
 
-        '$package_release_notes' >> $env:GITHUB_ENV
-
-        'EOF' >> $env:GITHUB_ENV
-
-        echo "Found version_number: $package_release_notes"
+        echo "Found package_release_notes: '$package_release_notes'"
       shell: pwsh
-
-    - name: Echo Variables
-      run: >-
-        echo "version_number: ${{ env.version_number }}"
-
-        echo "package_release_notes: ${{ env.package_release_notes }}"
+    - name: Display Package Release Notes
+      run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
     - name: Setup .Net
       uses: actions/setup-dotnet@v3
       with:
@@ -98,50 +89,44 @@ jobs:
 
         git config user.email "action@github.com"
     - name: Extract Version
+      id: extract_version
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        'version_number<<EOF' >> $env:GITHUB_ENV
-
-        '$version_number' >> $env:GITHUB_ENV
-
-        'EOF' >> $env:GITHUB_ENV
+        echo "##[set-output name=version_number]$version_number
 
         echo "Found version_number: '$version_number'"
       shell: pwsh
-    - name: Display Version Found
-      run: 'echo "version_number: ${{ env.version_number}}"'
+    - name: Display Version
+      run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
+      id: extract_package_release_notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        'package_release_notes<<EOF' >> $env:GITHUB_ENV
-
-        '$package_release_notes' >> $env:GITHUB_ENV
-
-        'EOF' >> $env:GITHUB_ENV
+        echo "##[set-output name=package_release_notes]$package_release_notes
 
         echo "Found package_release_notes: '$package_release_notes'"
       shell: pwsh
     - name: Display Package Release Notes
-      run: 'echo "package_release_notes: ${{ env.package_release_notes}}"'
+      run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
     - name: Create GitHub Tag
       run: >-
-        git tag -a "v${{ env.version_number }}" -m "Release - v${{ env.version_number }}"
+        git tag -a "v${{ steps.extract_version.outputs.version_number }}" -m "Release - v${{ steps.extract_version.outputs.version_number }}"
 
         git push origin --tags
     - name: Create GitHub Release
       uses: actions/create-release@v1
       with:
-        tag_name: v${{ env.version_number }}
-        release_name: Release - v${{ env.version_number }}
+        tag_name: v${{ steps.extract_version.outputs.version_number }}
+        release_name: Release - v${{ steps.extract_version.outputs.version_number }}
         body: >-
-          ## Release - v${{ env.version_number }}
+          ## Release - v${{ steps.extract_version.outputs.version_number }}
 
 
           ### Release Notes
 
-          ${{ env.package_release_notes }}
+          ${{ steps.extract_package_release_notes.outputs.package_release_notes }}
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_FOR_TAGGING }}
   publish:

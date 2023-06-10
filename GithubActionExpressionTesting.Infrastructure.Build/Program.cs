@@ -62,27 +62,31 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                                 },
 
                                 new ExtractProjectPropertyTask(
+                                    name: "Extract Version",
+                                    id: "extract_version",
                                     projectRelativePath,
                                     propertyName: "Version",
-                                    environmentVariableName: versionEnvironmentVariableName)
-                                {
-                                    Name = $"Extract Version"
-                                },
-
-                                new ExtractProjectPropertyTask(
-                                    projectRelativePath,
-                                    propertyName: "PackageReleaseNotes",
-                                    environmentVariableName: packageReleaseNotesEnvironmentVariable)
-                                {
-                                    Name = $"Extract Package Release Notes"
-                                },
+                                    stepVariableName: "version_number"),
 
                                 new GithubTask()
                                 {
-                                    Name = "Echo Variables",
+                                    Name = "Display Version",
+                                    Run = "echo \"Version number: ${{ steps.extract_version.outputs.version_number }}\""
+                                },
+
+                                new ExtractProjectPropertyTask(
+                                    name: $"Extract Package Release Notes",
+                                    id: "extract_package_release_notes",
+                                    projectRelativePath,
+                                    propertyName: "PackageReleaseNotes",
+                                    stepVariableName: "package_release_notes"),
+
+                                new GithubTask()
+                                {
+                                    Name = "Display Package Release Notes",
                                     Run =
-                                        "echo \"version_number: ${{ env.version_number }}\"\n" +
-                                        "echo \"package_release_notes: ${{ env.package_release_notes }}\""
+                                        "echo \"Package Release Notes: "
+                                        + "${{ steps.extract_package_release_notes.outputs.package_release_notes }}\""
                                 },
 
                                 new SetupDotNetTaskV3
@@ -119,8 +123,6 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                             dependsOn: "build",
                             projectRelativePath,
                             githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
-                            versionEnvironmentVariableName,
-                            packageReleaseNotesEnvironmentVariable,
                             branchName)
                     },
                     {
