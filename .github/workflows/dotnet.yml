@@ -37,10 +37,11 @@ jobs:
       run: >
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        "version_number<<EOF" >> $GITHUB_OUTPUT 
+        echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        "$version_number" >> $GITHUB_OUTPUT 
+        echo "$version_number" >> $GITHUB_OUTPUT 
 
+        echo 
 
         EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -51,10 +52,11 @@ jobs:
       run: >
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
+        echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        "$package_release_notes" >> $GITHUB_OUTPUT 
+        echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
+        echo 
 
         EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -99,10 +101,11 @@ jobs:
       run: >
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
-        "version_number<<EOF" >> $GITHUB_OUTPUT 
+        echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        "$version_number" >> $GITHUB_OUTPUT 
+        echo "$version_number" >> $GITHUB_OUTPUT 
 
+        echo 
 
         EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -113,10 +116,11 @@ jobs:
       run: >
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
-        "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
+        echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        "$package_release_notes" >> $GITHUB_OUTPUT 
+        echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
+        echo 
 
         EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
