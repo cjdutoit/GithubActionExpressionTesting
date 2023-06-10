@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="ADotNet" Version="3.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
 		<PackageReference Include="xunit.abstractions" Version="2.0.3" />
 		<PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
@@ -26,10 +27,6 @@
 			<Pack>false</Pack>
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\ADotNet\ADotNet\ADotNet.csproj" />
 	</ItemGroup>
 
 </Project>
