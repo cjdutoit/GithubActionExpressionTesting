@@ -41,9 +41,7 @@ jobs:
 
         echo "$version_number" >> $GITHUB_OUTPUT 
 
-        echo 
-
-        EOF" >> $GITHUB_OUTPUT 
+        echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
@@ -56,9 +54,7 @@ jobs:
 
         echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
-        echo 
-
-        EOF" >> $GITHUB_OUTPUT 
+        echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
@@ -105,9 +101,7 @@ jobs:
 
         echo "$version_number" >> $GITHUB_OUTPUT 
 
-        echo 
-
-        EOF" >> $GITHUB_OUTPUT 
+        echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
@@ -120,9 +114,7 @@ jobs:
 
         echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
-        echo 
-
-        EOF" >> $GITHUB_OUTPUT 
+        echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
