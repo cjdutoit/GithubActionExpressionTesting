@@ -35,7 +35,7 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        set -x 
+        $VerbosePreference = 'Continue' 
 
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
@@ -54,7 +54,7 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        set -x 
+        $VerbosePreference = 'Continue' 
 
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
@@ -107,7 +107,7 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        set -x 
+        $VerbosePreference = 'Continue' 
 
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
@@ -126,7 +126,7 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        set -x 
+        $VerbosePreference = 'Continue' 
 
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
 
