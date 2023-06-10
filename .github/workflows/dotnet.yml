@@ -37,6 +37,8 @@ jobs:
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
+        $version_number = $version_number.Replace('"', '\"')
+
         $version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append
       shell: pwsh
     - name: Display Version
@@ -45,6 +47,8 @@ jobs:
       id: extract_package_release_notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
+
+        $package_release_notes = $package_release_notes.Replace('"', '\"')
 
         $package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append
       shell: pwsh
@@ -89,6 +93,8 @@ jobs:
       run: >-
         $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
 
+        $version_number = $version_number.Replace('"', '\"')
+
         $version_number | Out-File -FilePath $env:GITHUB_OUTPUT -Append
       shell: pwsh
     - name: Display Version
@@ -97,6 +103,8 @@ jobs:
       id: extract_package_release_notes
       run: >-
         $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
+
+        $package_release_notes = $package_release_notes.Replace('"', '\"')
 
         $package_release_notes | Out-File -FilePath $env:GITHUB_OUTPUT -Append
       shell: pwsh
