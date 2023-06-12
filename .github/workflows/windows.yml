@@ -38,23 +38,64 @@ jobs:
 
         git config user.email "action@github.com"
     - name: Extract Version
-      shell: pwsh
-      run: |-
-        $version_number = ((Select-Xml -Path GithubActionExpressionTesting/GithubActionExpressionTesting.csproj -XPath "//Version").Node.InnerXML)
-        "version_number=$version_number" >> $env:GITHUB_ENV
+      id: extract_version
+      run: >
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
+        # Running on Windows 
+
+        apt install xmlstarlet
+
+        version_number=$(xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+
+        else 
+
+        # Running on Linux/Unix
+
+        sudo apt-get install xmlstarlet
+
+        version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+
+        fi 
+
+        echo "$version_number"
+
+        echo "version_number<<EOF" >> $GITHUB_OUTPUT 
+
+        echo "$version_number" >> $GITHUB_OUTPUT 
+
+        echo "EOF" >> $GITHUB_OUTPUT 
+      shell: bash
+    - name: Display Version
+      run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
-      shell: pwsh
-      run: |-
-        $package_release_notes = ((Select-Xml -Path GithubActionExpressionTesting/GithubActionExpressionTesting.csproj -XPath "//PackageReleaseNotes").Node.InnerXML)
+      id: extract_package_release_notes
+      run: >
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        # Since release notes can have multi line text we need
-        # to do the following to set the environment variable
-        "package_release_notes<<EOF" >> $env:GITHUB_ENV
-        "$package_release_notes" >> $env:GITHUB_ENV
-        "EOF" >> $env:GITHUB_ENV
+        # Running on Windows 
 
-    - name: Echo Variables
-      run: |-
-        echo "Found next version_number: '${{ env.version_number }}'"
-        echo "Found next package_release_notes: ${{ env.package_release_notes }}"
+        apt install xmlstarlet
+
+        package_release_notes=$(xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+
+        else 
+
+        # Running on Linux/Unix
+
+        sudo apt-get install xmlstarlet
+
+        package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+
+        fi 
+
+        echo "$package_release_notes"
+
+        echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
+
+        echo "$package_release_notes" >> $GITHUB_OUTPUT 
+
+        echo "EOF" >> $GITHUB_OUTPUT 
+      shell: bash
+    - name: Display Package Release Notes
+      run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
