@@ -43,11 +43,15 @@ jobs:
 
         # Running on Windows 
 
-        version_number=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
+        version_number=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        else 
 
         # Running on Linux/Unix
 
-        version_number=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
+        version_number=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        fi 
 
         echo "version_number"
 
@@ -70,11 +74,15 @@ jobs:
 
         # Running on Windows 
 
-        package_release_notes=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
+        package_release_notes=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        else 
 
         # Running on Linux/Unix
 
-        package_release_notes=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
+        package_release_notes=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        fi 
 
         echo "package_release_notes"
 
@@ -131,11 +139,15 @@ jobs:
 
         # Running on Windows 
 
-        version_number=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
+        version_number=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        else 
 
         # Running on Linux/Unix
 
-        version_number=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
+        version_number=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        fi 
 
         echo "version_number"
 
@@ -158,11 +170,15 @@ jobs:
 
         # Running on Windows 
 
-        package_release_notes=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
+        package_release_notes=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        else 
 
         # Running on Linux/Unix
 
-        package_release_notes=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
+        package_release_notes=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+
+        fi 
 
         echo "package_release_notes"
 
