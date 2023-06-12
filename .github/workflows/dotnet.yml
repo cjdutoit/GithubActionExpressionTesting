@@ -39,7 +39,9 @@ jobs:
 
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        # Running on Windowsversion_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
+        # Running on Windows 
+
+        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
         else 
 
@@ -64,7 +66,9 @@ jobs:
 
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        # Running on Windowspackage_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
+        # Running on Windows 
+
+        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
         else 
 
@@ -123,7 +127,9 @@ jobs:
 
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        # Running on Windowsversion_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
+        # Running on Windows 
+
+        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
         else 
 
@@ -148,7 +154,9 @@ jobs:
 
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        # Running on Windowspackage_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
+        # Running on Windows 
+
+        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
         else 
 
