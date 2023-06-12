@@ -53,7 +53,7 @@ jobs:
 
         fi 
 
-        echo "version_number"
+        echo "$version_number"
 
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
@@ -84,7 +84,7 @@ jobs:
 
         fi 
 
-        echo "package_release_notes"
+        echo "$package_release_notes"
 
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
@@ -149,7 +149,7 @@ jobs:
 
         fi 
 
-        echo "version_number"
+        echo "$version_number"
 
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
@@ -180,7 +180,7 @@ jobs:
 
         fi 
 
-        echo "package_release_notes"
+        echo "$package_release_notes"
 
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
