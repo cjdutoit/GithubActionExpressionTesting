@@ -35,7 +35,9 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        version_number=$(awk -v RS='\n' '/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='
+
+        ' '/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         echo "$version_number"
 
@@ -50,7 +52,9 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        package_release_notes=$(awk -v RS='\n' '/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='
+
+        ' '/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         echo "$package_release_notes"
 
@@ -99,7 +103,9 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        version_number=$(awk -v RS='\n' '/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='
+
+        ' '/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         echo "$version_number"
 
@@ -114,7 +120,9 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        package_release_notes=$(awk -v RS='\n' '/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='
+
+        ' '/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}' GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         echo "$package_release_notes"
 
