@@ -39,7 +39,7 @@ jobs:
 
         # Running on Windows 
 
-        apt install xmlstarlet
+        choco install xmlstarlet
 
         version_number=$(xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
@@ -70,7 +70,7 @@ jobs:
 
         # Running on Windows 
 
-        apt install xmlstarlet
+        choco install xmlstarlet
 
         package_release_notes=$(xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
@@ -135,7 +135,7 @@ jobs:
 
         # Running on Windows 
 
-        apt install xmlstarlet
+        choco install xmlstarlet
 
         version_number=$(xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
@@ -166,7 +166,7 @@ jobs:
 
         # Running on Windows 
 
-        apt install xmlstarlet
+        choco install xmlstarlet
 
         package_release_notes=$(xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
