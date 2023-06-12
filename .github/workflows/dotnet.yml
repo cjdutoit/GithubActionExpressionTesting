@@ -35,10 +35,6 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        $VerbosePreference = 'Continue' 
-
-        export VERBOSE_PREFERENCE='Continue' 
-
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
@@ -64,10 +60,6 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        $VerbosePreference = 'Continue' 
-
-        export VERBOSE_PREFERENCE='Continue' 
-
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
@@ -127,10 +119,6 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        $VerbosePreference = 'Continue' 
-
-        export VERBOSE_PREFERENCE='Continue' 
-
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
@@ -156,10 +144,6 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        $VerbosePreference = 'Continue' 
-
-        export VERBOSE_PREFERENCE='Continue' 
-
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
