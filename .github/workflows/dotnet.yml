@@ -56,7 +56,7 @@ jobs:
         echo "$version_number" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
-      shell: pwsh
+      shell: bash
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
@@ -83,7 +83,7 @@ jobs:
         echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
-      shell: pwsh
+      shell: bash
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
     - name: Setup .Net
@@ -144,7 +144,7 @@ jobs:
         echo "$version_number" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
-      shell: pwsh
+      shell: bash
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
@@ -171,7 +171,7 @@ jobs:
         echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
-      shell: pwsh
+      shell: bash
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
     - name: Create GitHub Tag
