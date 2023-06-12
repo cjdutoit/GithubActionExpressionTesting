@@ -39,7 +39,7 @@ jobs:
 
         # Running on Windows 
 
-        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "$GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
@@ -66,7 +66,7 @@ jobs:
 
         # Running on Windows 
 
-        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "$GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
@@ -127,7 +127,7 @@ jobs:
 
         # Running on Windows 
 
-        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "$GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
@@ -154,7 +154,7 @@ jobs:
 
         # Running on Windows 
 
-        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "$GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
