@@ -37,15 +37,21 @@ jobs:
       run: >
         $VerbosePreference = 'Continue' 
 
-        $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        echo "$version_number"
+        # Running on Windowsversion_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
-        echo $version_number > version_number.txt 
+        else 
+
+        # Running on Linux/Unix
+
+        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+
+        echo "version_number"
 
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$(cat version_number.txt)" >> $GITHUB_OUTPUT 
+        echo "$version_number" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -56,15 +62,21 @@ jobs:
       run: >
         $VerbosePreference = 'Continue' 
 
-        $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        echo "$package_release_notes"
+        # Running on Windowspackage_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
-        echo $package_release_notes > package_release_notes.txt 
+        else 
+
+        # Running on Linux/Unix
+
+        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+
+        echo "package_release_notes"
 
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$(cat package_release_notes.txt)" >> $GITHUB_OUTPUT 
+        echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -109,15 +121,21 @@ jobs:
       run: >
         $VerbosePreference = 'Continue' 
 
-        $version_number=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//Version').Node.InnerXML)
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        echo "$version_number"
+        # Running on Windowsversion_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
-        echo $version_number > version_number.txt 
+        else 
+
+        # Running on Linux/Unix
+
+        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+
+        echo "version_number"
 
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$(cat version_number.txt)" >> $GITHUB_OUTPUT 
+        echo "$version_number" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
@@ -128,15 +146,21 @@ jobs:
       run: >
         $VerbosePreference = 'Continue' 
 
-        $package_release_notes=((Select-Xml -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj' -XPath '//PackageReleaseNotes').Node.InnerXML)
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
-        echo "$package_release_notes"
+        # Running on Windowspackage_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
 
-        echo $package_release_notes > package_release_notes.txt 
+        else 
+
+        # Running on Linux/Unix
+
+        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+
+        echo "package_release_notes"
 
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
 
-        echo "$(cat package_release_notes.txt)" >> $GITHUB_OUTPUT 
+        echo "$package_release_notes" >> $GITHUB_OUTPUT 
 
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: pwsh
