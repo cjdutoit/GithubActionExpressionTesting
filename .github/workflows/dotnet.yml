@@ -39,13 +39,13 @@ jobs:
 
         # Running on Windows 
 
-        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
         # Running on Linux/Unix
 
-        version_number=$(awk -v RS='\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         fi 
 
@@ -66,13 +66,13 @@ jobs:
 
         # Running on Windows 
 
-        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
         # Running on Linux/Unix
 
-        package_release_notes=$(awk -v RS='\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         fi 
 
@@ -127,13 +127,13 @@ jobs:
 
         # Running on Windows 
 
-        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='\r\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
         # Running on Linux/Unix
 
-        version_number=$(awk -v RS='\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        version_number=$(awk -v RS='\n' "/<Version>/,/<\/Version>/{if(!/<Version>|<\/Version>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         fi 
 
@@ -154,13 +154,13 @@ jobs:
 
         # Running on Windows 
 
-        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='\r\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         else 
 
         # Running on Linux/Unix
 
-        package_release_notes=$(awk -v RS='\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        package_release_notes=$(awk -v RS='\n' "/<PackageReleaseNotes>/,/<\/PackageReleaseNotes>/{if(!/<PackageReleaseNotes>|<\/PackageReleaseNotes>/) print}" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj | sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
         fi 
 
