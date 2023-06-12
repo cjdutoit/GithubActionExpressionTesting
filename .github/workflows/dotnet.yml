@@ -47,7 +47,7 @@ jobs:
 
         # Running on Linux/Unix
 
-        apt-get install xmlstarlet
+        sudo apt-get install xmlstarlet
 
         version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
@@ -78,7 +78,7 @@ jobs:
 
         # Running on Linux/Unix
 
-        apt-get install xmlstarlet
+        sudo apt-get install xmlstarlet
 
         package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
@@ -143,7 +143,7 @@ jobs:
 
         # Running on Linux/Unix
 
-        apt-get install xmlstarlet
+        sudo apt-get install xmlstarlet
 
         version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
@@ -174,7 +174,7 @@ jobs:
 
         # Running on Linux/Unix
 
-        apt-get install xmlstarlet
+        sudo apt-get install xmlstarlet
 
         package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
