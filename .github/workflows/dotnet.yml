@@ -35,17 +35,19 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
+        xml_file="GithubActionExpressionTesting/GithubActionExpressionTesting.csproj"
+
+        element_name="Version"
+
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
 
-        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
-
-        else 
+        version_number=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
 
         # Running on Linux/Unix
 
-        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+        version_number=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
 
         echo "version_number"
 
@@ -60,17 +62,19 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
+        xml_file="GithubActionExpressionTesting/GithubActionExpressionTesting.csproj"
+
+        element_name="PackageReleaseNotes"
+
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
 
-        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
-
-        else 
+        package_release_notes=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
 
         # Running on Linux/Unix
 
-        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+        package_release_notes=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
 
         echo "package_release_notes"
 
@@ -119,17 +123,19 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
+        xml_file="GithubActionExpressionTesting/GithubActionExpressionTesting.csproj"
+
+        element_name="Version"
+
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
 
-        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
-
-        else 
+        version_number=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
 
         # Running on Linux/Unix
 
-        version_number=$(awk -F'[<>]' "/<$Version>/,/<\/$Version>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+        version_number=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
 
         echo "version_number"
 
@@ -144,17 +150,19 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
+        xml_file="GithubActionExpressionTesting/GithubActionExpressionTesting.csproj"
+
+        element_name="PackageReleaseNotes"
+
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
 
-        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj" | tr -d '\r') 
-
-        else 
+        package_release_notes=$(awk -v RS='\r\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')else 
 
         # Running on Linux/Unix
 
-        package_release_notes=$(awk -F'[<>]' "/<$PackageReleaseNotes>/,/<\/$PackageReleaseNotes>/{print}" "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj")fi 
+        package_release_notes=$(awk -v RS='\n' "/<$element_name>/,/<\/$element_name>/{if(!/<$element_name>|<\/$element_name>/) print}" "$xml_file" | sed -e 's/^[[:space:]]*//' -e '/^$/d')fi 
 
         echo "package_release_notes"
 
