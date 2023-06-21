@@ -44,9 +44,9 @@ jobs:
 
         # Running on Windows 
 
-        pacman -S mingw-w64-x86_64-xmlstarlet
+        sudo apt install xmlstarlet
 
-        version_number=$(wsl xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(wsl xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -54,7 +54,7 @@ jobs:
 
         sudo apt-get install xmlstarlet
 
-        version_number=$(wsl xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         fi 
 
