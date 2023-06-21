@@ -1,4 +1,4 @@
-name: .Net
+name: Windows Build
 on:
   push:
     branches:

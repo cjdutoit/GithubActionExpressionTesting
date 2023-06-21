@@ -21,12 +21,14 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
                 yamlFile: "build.yml");
 
             scriptGenerationService.GenerateOsSpecificBuildScript(
+                buildName: "Windows Build",
                 branchName: "main",
                 projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
                 yamlFile: "build-windows.yml",
                 BuildMachines.WindowsLatest);
 
             scriptGenerationService.GenerateOsSpecificBuildScript(
+                buildName: "Ubuntu Build",
                 branchName: "main",
                 projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
                 yamlFile: "build-ubuntu.yml",

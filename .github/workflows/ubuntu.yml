@@ -1,4 +1,4 @@
-name: .Net
+name: Ubuntu - Manual Build
 on:
   push:
     branches:

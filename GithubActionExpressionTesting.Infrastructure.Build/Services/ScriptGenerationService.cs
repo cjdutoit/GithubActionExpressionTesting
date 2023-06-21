@@ -25,7 +25,7 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
 
             var githubPipeline = new GithubPipeline
             {
-                Name = ".Net",
+                Name = "Build",
 
                 OnEvents = new Events
                 {
@@ -147,6 +147,7 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
         }
 
         public void GenerateOsSpecificBuildScript(
+            string buildName,
             string branchName,
             string projectRelativePath,
             string yamlFile,
@@ -156,7 +157,7 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
 
             var githubPipeline = new GithubPipeline
             {
-                Name = ".Net",
+                Name = buildName,
 
                 OnEvents = new Events
                 {
