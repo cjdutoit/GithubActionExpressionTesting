@@ -44,9 +44,9 @@ jobs:
 
         # Running on Windows 
 
-        choco install xmlstarlet
+        choco install xmlstarlet.portable -y
 
-        version_number=$(/c/ProgramData/chocolatey/lib/xmlstarlet.portable/tools/xml.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
