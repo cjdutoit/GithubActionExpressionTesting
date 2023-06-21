@@ -44,9 +44,9 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/movitto/xmlstarlet-win/raw/main/xml.exe
+        curl -LO https://github.com/mikefarah/yq/releases/download/3.4.1/yq_windows_amd64.exe -o xmlstarlet.exe
 
-        version_number=$(./xml.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(./xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
