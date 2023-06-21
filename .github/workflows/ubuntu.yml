@@ -44,9 +44,9 @@ jobs:
 
         # Running on Windows 
 
-        sudo apt install xmlstarlet
+        choco install xmlstarlet
 
-        version_number=$(wsl xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
