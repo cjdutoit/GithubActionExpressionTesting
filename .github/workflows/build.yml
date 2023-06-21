@@ -39,11 +39,9 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/mikefarah/yq/releases/download/3.4.1/yq_windows_amd64.exe -o xmlstarlet.exe
+        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
 
-        chmod +x xmlstarlet.exe
-
-        version_number=$(./xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(./xmlstar.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -72,11 +70,9 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/mikefarah/yq/releases/download/3.4.1/yq_windows_amd64.exe -o xmlstarlet.exe
+        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
 
-        chmod +x xmlstarlet.exe
-
-        package_release_notes=$(./xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        package_release_notes=$(./xmlstar.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -139,11 +135,9 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/mikefarah/yq/releases/download/3.4.1/yq_windows_amd64.exe -o xmlstarlet.exe
+        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
 
-        chmod +x xmlstarlet.exe
-
-        version_number=$(./xmlstarlet.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(./xmlstar.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -172,11 +166,9 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/mikefarah/yq/releases/download/3.4.1/yq_windows_amd64.exe -o xmlstarlet.exe
+        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
 
-        chmod +x xmlstarlet.exe
-
-        package_release_notes=$(./xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        package_release_notes=$(./xmlstar.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
