@@ -39,9 +39,9 @@ jobs:
 
         # Running on Windows 
 
-        choco install xmlstarlet.portable -y
+        curl -LO https://github.com/movitto/xmlstarlet-win/raw/main/xml.exe
 
-        version_number=$(xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(./xml.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -70,9 +70,9 @@ jobs:
 
         # Running on Windows 
 
-        choco install xmlstarlet.portable -y
+        curl -LO https://github.com/movitto/xmlstarlet-win/raw/main/xml.exe
 
-        package_release_notes=$(xml sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        package_release_notes=$(./xml.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -135,9 +135,9 @@ jobs:
 
         # Running on Windows 
 
-        choco install xmlstarlet.portable -y
+        curl -LO https://github.com/movitto/xmlstarlet-win/raw/main/xml.exe
 
-        version_number=$(xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        version_number=$(./xml.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -166,9 +166,9 @@ jobs:
 
         # Running on Windows 
 
-        choco install xmlstarlet.portable -y
+        curl -LO https://github.com/movitto/xmlstarlet-win/raw/main/xml.exe
 
-        package_release_notes=$(xml sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        package_release_notes=$(./xml.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
