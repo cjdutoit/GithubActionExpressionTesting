@@ -1,4 +1,4 @@
-name: Windows - Manual Build
+name: Windows Build
 on:
   push:
     branches:
@@ -27,16 +27,11 @@ env:
       )
     }}
 jobs:
-  build-windows-latest:
+  build:
     runs-on: windows-latest
     steps:
     - name: Check out
       uses: actions/checkout@v3
-    - name: Configure Git
-      run: >-
-        git config user.name "GitHub Action"
-
-        git config user.email "action@github.com"
     - name: Extract Version
       id: extract_version
       run: >
@@ -75,9 +70,9 @@ jobs:
 
         # Running on Windows 
 
-        choco install xmlstarlet
+        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
 
-        package_release_notes=$(xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        package_release_notes=$(./xmlstar.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -99,3 +94,13 @@ jobs:
       shell: bash
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
+    - name: Setup .Net
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.201
+    - name: Restore
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal

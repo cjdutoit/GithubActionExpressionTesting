@@ -5,6 +5,8 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,7 +17,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="../.github/workflows/dotnet.yml">
+		<None Include="../.github/workflows/build.yml">
+			<Pack>false</Pack>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Include="../.github/workflows/build-windows.yml">
+			<Pack>false</Pack>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Include="../.github/workflows/build-ubuntu.yml">
 			<Pack>false</Pack>
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>

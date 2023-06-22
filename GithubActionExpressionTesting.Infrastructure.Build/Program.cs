@@ -4,11 +4,8 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using ADotNet.Clients;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
-using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks;
-using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV1s;
-using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV3s;
+using GithubActionExpressionTesting.Infrastructure.Build.Services;
 
 namespace GithubActionExpressionTesting.Infrastructure.Build
 {
@@ -16,104 +13,26 @@ namespace GithubActionExpressionTesting.Infrastructure.Build
     {
         static void Main(string[] args)
         {
-            string branchName = "main";
-            var aDotNetClient = new ADotNetClient();
+            var scriptGenerationService = new ScriptGenerationService();
 
-            var githubPipeline = new GithubPipeline
-            {
-                Name = ".Net",
+            scriptGenerationService.GenerateBuildScript(
+                branchName: "main",
+                projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
+                yamlFile: "build.yml");
 
-                OnEvents = new Events
-                {
-                    Push = new PushEvent
-                    {
-                        Branches = new string[] { branchName }
-                    },
+            scriptGenerationService.GenerateOsSpecificBuildScript(
+                buildName: "Windows Build",
+                branchName: "main",
+                projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
+                yamlFile: "build-windows.yml",
+                BuildMachines.WindowsLatest);
 
-                    PullRequest = new PullRequestEvent
-                    {
-                        Types = new string[] { "opened", "synchronize", "reopened", "closed" },
-                        Branches = new string[] { branchName }
-                    }
-                },
-
-                EnvironmentVariables = new Dictionary<string, string>
-                {
-                    { "IS_RELEASE_CANDIDATE", EnvironmentVariables.IsGitHubReleaseCandidate() }
-                },
-
-                Jobs = new Dictionary<string, Job>
-                {
-                    {
-                        "build",
-                        new Job
-                        {
-                            RunsOn = BuildMachines.UbuntuLatest,
-
-                            Steps = new List<GithubTask>
-                            {
-                                new CheckoutTaskV3
-                                {
-                                    Name = "Check out"
-                                },
-
-                                new SetupDotNetTaskV3
-                                {
-                                    Name = "Setup .Net",
-
-                                    With = new TargetDotNetVersionV3
-                                    {
-                                        DotNetVersion = "7.0.201"
-                                    }
-                                },
-
-                                new RestoreTask
-                                {
-                                    Name = "Restore"
-                                },
-
-                                new DotNetBuildTask
-                                {
-                                    Name = "Build"
-                                },
-
-                                new TestTask
-                                {
-                                    Name = "Test"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "add_tag",
-                        new TagJob(
-                            runsOn: BuildMachines.UbuntuLatest,
-                            dependsOn: "build",
-                            projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
-                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
-                            versionEnvironmentVariableName: "version_number",
-                            packageReleaseNotesEnvironmentVariable: "package_release_notes",
-                            branchName: branchName)
-                    },
-                    {
-                        "publish",
-                        new PublishJob(
-                            runsOn: BuildMachines.UbuntuLatest,
-                            dependsOn: "add_tag",
-                            nugetApiKey: "${{ secrets.NUGET_ACCESS }}")
-                    }
-                }
-            };
-
-            string buildScriptPath = "../../../../.github/workflows/dotnet.yml";
-            string directoryPath = Path.GetDirectoryName(buildScriptPath);
-
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-
-            aDotNetClient.SerializeAndWriteToFile(githubPipeline, path: buildScriptPath);
+            scriptGenerationService.GenerateOsSpecificBuildScript(
+                buildName: "Ubuntu Build",
+                branchName: "main",
+                projectRelativePath: "GithubActionExpressionTesting/GithubActionExpressionTesting.csproj",
+                yamlFile: "build-ubuntu.yml",
+                BuildMachines.UbuntuLatest);
         }
     }
 }
