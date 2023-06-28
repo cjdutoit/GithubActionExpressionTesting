@@ -25,15 +25,18 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        # Running on Linux/Unix
+        # Running on Linux/Unix 
 
         sudo apt-get install xmlstarlet
 
         version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-        
+
         echo "$version_number"
+
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
+
         echo "$version_number" >> $GITHUB_OUTPUT 
+
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: bash
     - name: Display Version
@@ -41,15 +44,18 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        # Running on Linux/Unix
+        # Running on Linux/Unix 
 
         sudo apt-get install xmlstarlet
 
         package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         echo "$package_release_notes"
+
         echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
+
         echo "$package_release_notes" >> $GITHUB_OUTPUT 
+
         echo "EOF" >> $GITHUB_OUTPUT 
       shell: bash
     - name: Display Package Release Notes
