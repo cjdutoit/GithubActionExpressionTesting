@@ -66,7 +66,8 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
                                     id: "extract_version",
                                     projectRelativePath,
                                     propertyName: "Version",
-                                    stepVariableName: "version_number"),
+                                    stepVariableName: "version_number",
+                                    runsOn: BuildMachines.UbuntuLatest),
 
                                 new GithubTask()
                                 {
@@ -79,7 +80,8 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
                                     id: "extract_package_release_notes",
                                     projectRelativePath,
                                     propertyName: "PackageReleaseNotes",
-                                    stepVariableName: "package_release_notes"),
+                                    stepVariableName: "package_release_notes",
+                                    runsOn: BuildMachines.UbuntuLatest),
 
                                 new GithubTask()
                                 {
@@ -198,7 +200,8 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
                                     id: "extract_version",
                                     projectRelativePath,
                                     propertyName: "Version",
-                                    stepVariableName: "version_number"),
+                                    stepVariableName: "version_number",
+                                    runsOn : buildMachine),
 
                                 new GithubTask()
                                 {
@@ -211,7 +214,8 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
                                     id: "extract_package_release_notes",
                                     projectRelativePath,
                                     propertyName: "PackageReleaseNotes",
-                                    stepVariableName: "package_release_notes"),
+                                    stepVariableName: "package_release_notes",
+                                    runsOn : buildMachine),
 
                                 new GithubTask()
                                 {

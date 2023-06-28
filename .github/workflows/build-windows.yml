@@ -35,62 +35,22 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
-
         # Running on Windows 
 
         Invoke-WebRequest -Uri 'https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/1.6.1/xmlstarlet-1.6.1-win32.zip' -OutFile 'xmlstarlet.zip'Expand-Archive -Path 'xmlstarlet.zip' -DestinationPath 'xmlstarlet'$env:Path += ";$(PWD)/xmlstarlet"$version_number= & xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj 
 
         echo "::set - output name = version_number::$version_number" 
-
-        else 
-
-        # Running on Linux/Unix
-
-        sudo apt-get install xmlstarlet
-
-        version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-
-        fi 
-
-        echo "$version_number"
-
-        echo "version_number<<EOF" >> $GITHUB_OUTPUT 
-
-        echo "$version_number" >> $GITHUB_OUTPUT 
-
-        echo "EOF" >> $GITHUB_OUTPUT 
-      shell: bash
+      shell: pwsh
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
-
         # Running on Windows 
 
         Invoke-WebRequest -Uri 'https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/1.6.1/xmlstarlet-1.6.1-win32.zip' -OutFile 'xmlstarlet.zip'Expand-Archive -Path 'xmlstarlet.zip' -DestinationPath 'xmlstarlet'$env:Path += ";$(PWD)/xmlstarlet"$package_release_notes= & xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj 
 
         echo "::set - output name = package_release_notes::$package_release_notes" 
-
-        else 
-
-        # Running on Linux/Unix
-
-        sudo apt-get install xmlstarlet
-
-        package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-
-        fi 
-
-        echo "$package_release_notes"
-
-        echo "package_release_notes<<EOF" >> $GITHUB_OUTPUT 
-
-        echo "$package_release_notes" >> $GITHUB_OUTPUT 
-
-        echo "EOF" >> $GITHUB_OUTPUT 
-      shell: bash
+      shell: pwsh
     - name: Display Package Release Notes
       run: 'echo "Package Release Notes: ${{ steps.extract_package_release_notes.outputs.package_release_notes }}"'
