@@ -39,8 +39,4 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\ADotNet\ADotNet\ADotNet.csproj" />
-	</ItemGroup>
-
 </Project>
