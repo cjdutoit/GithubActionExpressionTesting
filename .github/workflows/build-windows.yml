@@ -39,21 +39,15 @@ jobs:
 
         # Running on Windows 
 
-        # Install WSL 
+        Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
 
-        powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
+        Install-Module -Name PSXml -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
 
-        powershell -Command "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart" 
+        $xml = [xml](Get-Content -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj') 
 
-        wsl --set-default-version 2 
+        $version_number=$xml.SelectSingleNode('//Version').InnerText
 
-        wsl --install -d Ubuntu 
-
-        wsl --system 
-
-        # Run the bash script in WSL to extract the XML version 
-
-        wsl bash -c 'version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
+        Write-Host "##[set-output name=version]$version_number" 
 
         else 
 
@@ -82,21 +76,15 @@ jobs:
 
         # Running on Windows 
 
-        # Install WSL 
+        Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
 
-        powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
+        Install-Module -Name PSXml -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
 
-        powershell -Command "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart" 
+        $xml = [xml](Get-Content -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj') 
 
-        wsl --set-default-version 2 
+        $package_release_notes=$xml.SelectSingleNode('//PackageReleaseNotes').InnerText
 
-        wsl --install -d Ubuntu 
-
-        wsl --system 
-
-        # Run the bash script in WSL to extract the XML version 
-
-        wsl bash -c 'package_release_notes=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
+        Write-Host "##[set-output name=version]$package_release_notes" 
 
         else 
 
