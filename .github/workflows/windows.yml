@@ -42,7 +42,8 @@ jobs:
         echo "$version_number"
         echo "version_number<<EOF" >> $GITHUB_OUTPUT 
         echo "$version_number" >> $GITHUB_OUTPUT 
-        echo "EOF" >> $GITHUB_OUTPUT 
+        echo "EOF" >> $GITHUB_OUTPUT
+       uses: actions/setup-python@v2
       shell: bash
     - name: Display Version
       run: 'echo "Version number: ${{ steps.extract_version.outputs.version_number }}"'

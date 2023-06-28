@@ -220,31 +220,6 @@ namespace GithubActionExpressionTesting.Infrastructure.Build.Services
                                         "echo \"Package Release Notes: "
                                         + "${{ steps.extract_package_release_notes.outputs.package_release_notes }}\""
                                 },
-
-                                new SetupDotNetTaskV3
-                                {
-                                    Name = "Setup .Net",
-
-                                    With = new TargetDotNetVersionV3
-                                    {
-                                        DotNetVersion = "7.0.201"
-                                    }
-                                },
-
-                                new RestoreTask
-                                {
-                                    Name = "Restore"
-                                },
-
-                                new DotNetBuildTask
-                                {
-                                    Name = "Build"
-                                },
-
-                                new TestTask
-                                {
-                                    Name = "Test"
-                                }
                             }
                         }
                     },

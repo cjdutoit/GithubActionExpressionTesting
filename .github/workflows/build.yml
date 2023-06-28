@@ -39,11 +39,29 @@ jobs:
 
         # Running on Windows 
 
-        apt-get update
+        # Set up WSL 
 
-        apt-get install -y libxml2-utils
+        python -m pip install virtualenv 
 
-        bash -c version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        python -m virtualenv wsl 
+
+        wsl/bin/python -m pip install -U pip 
+
+        wsl/bin/python -m pip install pyyaml 
+
+        # Install WSL 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart" 
+
+        wsl --set-default-version 2 
+
+        wsl --install 
+
+        # Run the bash script in WSL to extract the XML version 
+
+        wsl bash -c 'version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
 
         else 
 
@@ -72,11 +90,29 @@ jobs:
 
         # Running on Windows 
 
-        apt-get update
+        # Set up WSL 
 
-        apt-get install -y libxml2-utils
+        python -m pip install virtualenv 
 
-        bash -c package_release_notes=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        python -m virtualenv wsl 
+
+        wsl/bin/python -m pip install -U pip 
+
+        wsl/bin/python -m pip install pyyaml 
+
+        # Install WSL 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart" 
+
+        wsl --set-default-version 2 
+
+        wsl --install 
+
+        # Run the bash script in WSL to extract the XML version 
+
+        wsl bash -c 'package_release_notes=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
 
         else 
 
@@ -139,11 +175,29 @@ jobs:
 
         # Running on Windows 
 
-        apt-get update
+        # Set up WSL 
 
-        apt-get install -y libxml2-utils
+        python -m pip install virtualenv 
 
-        bash -c version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        python -m virtualenv wsl 
+
+        wsl/bin/python -m pip install -U pip 
+
+        wsl/bin/python -m pip install pyyaml 
+
+        # Install WSL 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart" 
+
+        wsl --set-default-version 2 
+
+        wsl --install 
+
+        # Run the bash script in WSL to extract the XML version 
+
+        wsl bash -c 'version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
 
         else 
 
@@ -172,11 +226,29 @@ jobs:
 
         # Running on Windows 
 
-        apt-get update
+        # Set up WSL 
 
-        apt-get install -y libxml2-utils
+        python -m pip install virtualenv 
 
-        bash -c package_release_notes=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        python -m virtualenv wsl 
+
+        wsl/bin/python -m pip install -U pip 
+
+        wsl/bin/python -m pip install pyyaml 
+
+        # Install WSL 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
+
+        powershell -Command "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart" 
+
+        wsl --set-default-version 2 
+
+        wsl --install 
+
+        # Run the bash script in WSL to extract the XML version 
+
+        wsl bash -c 'package_release_notes=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
 
         else 
 
