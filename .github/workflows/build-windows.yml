@@ -47,9 +47,9 @@ jobs:
 
         wsl --set-default-version 2 
 
-        wsl --install 
+        wsl --install -d Ubuntu 
 
-        wsl --install Ubuntu
+        wsl --system 
 
         # Run the bash script in WSL to extract the XML version 
 
@@ -90,9 +90,9 @@ jobs:
 
         wsl --set-default-version 2 
 
-        wsl --install 
+        wsl --install -d Ubuntu 
 
-        wsl --install Ubuntu
+        wsl --system 
 
         # Run the bash script in WSL to extract the XML version 
 
