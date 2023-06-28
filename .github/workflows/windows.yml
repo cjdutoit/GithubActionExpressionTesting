@@ -17,11 +17,18 @@ jobs:
     steps:
     - name: Check out
       uses: actions/checkout@v3
+
+    - name: Set up bash
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
     - name: Configure Git
       run: >-
         git config user.name "GitHub Action"
 
         git config user.email "action@github.com"
+
     - name: Extract Version
       id: extract_version
       run: >
