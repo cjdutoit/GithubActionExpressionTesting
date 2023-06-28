@@ -39,15 +39,9 @@ jobs:
 
         # Running on Windows 
 
-        Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
+        Invoke-WebRequest -Uri 'https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/1.6.1/xmlstarlet-1.6.1-win32.zip' -OutFile 'xmlstarlet.zip'Expand-Archive -Path 'xmlstarlet.zip' -DestinationPath 'xmlstarlet'$env:Path += ";$(PWD)/xmlstarlet"$version_number= & xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj 
 
-        Install-Module -Name PSXml -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
-
-        $xml = [xml](Get-Content -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj') 
-
-        $version_number=$xml.SelectSingleNode('//Version').InnerText
-
-        Write-Host "##[set-output name=version]$version_number" 
+        echo "::set - output name = version_number::$version_number" 
 
         else 
 
@@ -76,15 +70,9 @@ jobs:
 
         # Running on Windows 
 
-        Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
+        Invoke-WebRequest -Uri 'https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/1.6.1/xmlstarlet-1.6.1-win32.zip' -OutFile 'xmlstarlet.zip'Expand-Archive -Path 'xmlstarlet.zip' -DestinationPath 'xmlstarlet'$env:Path += ";$(PWD)/xmlstarlet"$package_release_notes= & xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj 
 
-        Install-Module -Name PSXml -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
-
-        $xml = [xml](Get-Content -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj') 
-
-        $package_release_notes=$xml.SelectSingleNode('//PackageReleaseNotes').InnerText
-
-        Write-Host "##[set-output name=version]$package_release_notes" 
+        echo "::set - output name = package_release_notes::$package_release_notes" 
 
         else 
 
@@ -147,15 +135,9 @@ jobs:
 
         # Running on Windows 
 
-        Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
+        Invoke-WebRequest -Uri 'https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/1.6.1/xmlstarlet-1.6.1-win32.zip' -OutFile 'xmlstarlet.zip'Expand-Archive -Path 'xmlstarlet.zip' -DestinationPath 'xmlstarlet'$env:Path += ";$(PWD)/xmlstarlet"$version_number= & xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj 
 
-        Install-Module -Name PSXml -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
-
-        $xml = [xml](Get-Content -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj') 
-
-        $version_number=$xml.SelectSingleNode('//Version').InnerText
-
-        Write-Host "##[set-output name=version]$version_number" 
+        echo "::set - output name = version_number::$version_number" 
 
         else 
 
@@ -184,15 +166,9 @@ jobs:
 
         # Running on Windows 
 
-        Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
+        Invoke-WebRequest -Uri 'https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/1.6.1/xmlstarlet-1.6.1-win32.zip' -OutFile 'xmlstarlet.zip'Expand-Archive -Path 'xmlstarlet.zip' -DestinationPath 'xmlstarlet'$env:Path += ";$(PWD)/xmlstarlet"$package_release_notes= & xml sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj 
 
-        Install-Module -Name PSXml -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop 
-
-        $xml = [xml](Get-Content -Path 'GithubActionExpressionTesting/GithubActionExpressionTesting.csproj') 
-
-        $package_release_notes=$xml.SelectSingleNode('//PackageReleaseNotes').InnerText
-
-        Write-Host "##[set-output name=version]$package_release_notes" 
+        echo "::set - output name = package_release_notes::$package_release_notes" 
 
         else 
 
