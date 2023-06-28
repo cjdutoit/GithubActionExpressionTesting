@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GithubActionExpressionTesti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GithubActionExpressionTesting.Infrastructure.Tests", "GithubActionExpressionTesting.Infrastructure.Tests\GithubActionExpressionTesting.Infrastructure.Tests.csproj", "{5061BE5E-AB3D-4FDA-B6D7-FB41BCD4A493}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADotNet", "..\ADotNet\ADotNet\ADotNet.csproj", "{EF46ED45-C32B-4068-8788-B0FAC6B665D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5061BE5E-AB3D-4FDA-B6D7-FB41BCD4A493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5061BE5E-AB3D-4FDA-B6D7-FB41BCD4A493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5061BE5E-AB3D-4FDA-B6D7-FB41BCD4A493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF46ED45-C32B-4068-8788-B0FAC6B665D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF46ED45-C32B-4068-8788-B0FAC6B665D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF46ED45-C32B-4068-8788-B0FAC6B665D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF46ED45-C32B-4068-8788-B0FAC6B665D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,9 +39,11 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
+        apt-get update
 
-        version_number=$(./xmlstar.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        apt-get install -y libxml2-utils
+
+        bash -c version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
@@ -70,9 +72,11 @@ jobs:
 
         # Running on Windows 
 
-        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
+        apt-get update
 
-        package_release_notes=$(./xmlstar.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
+        apt-get install -y libxml2-utils
+
+        bash -c package_release_notes=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
 
         else 
 
