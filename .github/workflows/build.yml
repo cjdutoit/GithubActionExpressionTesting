@@ -39,16 +39,6 @@ jobs:
 
         # Running on Windows 
 
-        # Set up WSL 
-
-        python -m pip install virtualenv 
-
-        python -m virtualenv wsl 
-
-        wsl/bin/python -m pip install -U pip 
-
-        wsl/bin/python -m pip install pyyaml 
-
         # Install WSL 
 
         powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
@@ -89,16 +79,6 @@ jobs:
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
-
-        # Set up WSL 
-
-        python -m pip install virtualenv 
-
-        python -m virtualenv wsl 
-
-        wsl/bin/python -m pip install -U pip 
-
-        wsl/bin/python -m pip install pyyaml 
 
         # Install WSL 
 
@@ -175,16 +155,6 @@ jobs:
 
         # Running on Windows 
 
-        # Set up WSL 
-
-        python -m pip install virtualenv 
-
-        python -m virtualenv wsl 
-
-        wsl/bin/python -m pip install -U pip 
-
-        wsl/bin/python -m pip install pyyaml 
-
         # Install WSL 
 
         powershell -Command "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" 
@@ -225,16 +195,6 @@ jobs:
         if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
 
         # Running on Windows 
-
-        # Set up WSL 
-
-        python -m pip install virtualenv 
-
-        python -m virtualenv wsl 
-
-        wsl/bin/python -m pip install -U pip 
-
-        wsl/bin/python -m pip install pyyaml 
 
         # Install WSL 
 
