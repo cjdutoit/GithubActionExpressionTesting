@@ -11,21 +11,6 @@ on:
     - closed
     branches:
     - main
-env:
-  IS_RELEASE_CANDIDATE: >-
-    ${{
-      (
-        github.event_name == 'pull_request' && 
-        startsWith(github.event.pull_request.title, 'RELEASES:') && 
-        contains(github.event.pull_request.labels.*.name, 'RELEASES')
-      )
-      ||
-      (
-        github.event_name == 'push' && 
-        startsWith(github.event.head_commit.message, 'RELEASES:') && 
-        startsWith(github.ref_name, 'RELEASE')
-      )
-    }}
 jobs:
   build-ubuntu-latest:
     runs-on: ubuntu-latest
@@ -40,23 +25,11 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: >
-        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
-
-        # Running on Windows 
-
-        curl -LO https://github.com/movitto/xmlstar/raw/main/xmlstar.exe
-
-        version_number=$(./xmlstar.exe sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-
-        else 
-
-        # Running on Linux/Unix
+        # Running on Linux/Unix 
 
         sudo apt-get install xmlstarlet
 
         version_number=$(xmlstarlet sel -t -v "//Version" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-
-        fi 
 
         echo "$version_number"
 
@@ -71,23 +44,11 @@ jobs:
     - name: Extract Package Release Notes
       id: extract_package_release_notes
       run: >
-        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then 
-
-        # Running on Windows 
-
-        choco install xmlstarlet
-
-        package_release_notes=$(xmlstarlet.exe sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-
-        else 
-
-        # Running on Linux/Unix
+        # Running on Linux/Unix 
 
         sudo apt-get install xmlstarlet
 
         package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)
-
-        fi 
 
         echo "$package_release_notes"
 
