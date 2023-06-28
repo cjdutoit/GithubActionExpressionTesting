@@ -49,6 +49,8 @@ jobs:
 
         wsl --install 
 
+        wsl --install Ubuntu
+
         # Run the bash script in WSL to extract the XML version 
 
         wsl bash -c 'version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
@@ -89,6 +91,8 @@ jobs:
         wsl --set-default-version 2 
 
         wsl --install 
+
+        wsl --install Ubuntu
 
         # Run the bash script in WSL to extract the XML version 
 
@@ -165,6 +169,8 @@ jobs:
 
         wsl --install 
 
+        wsl --install Ubuntu
+
         # Run the bash script in WSL to extract the XML version 
 
         wsl bash -c 'version_number=$(xmllint --xpath "string(//Version)" GithubActionExpressionTesting/GithubActionExpressionTesting.csproj)'
@@ -205,6 +211,8 @@ jobs:
         wsl --set-default-version 2 
 
         wsl --install 
+
+        wsl --install Ubuntu
 
         # Run the bash script in WSL to extract the XML version 
 
